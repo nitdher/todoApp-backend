@@ -18,7 +18,7 @@ import { errorHandler } from './infrastructure/middleware/errorHandler';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.SERVER_PORT || 3000;
 
 app.use(cors({
   origin: process.env.CORS_ORIGIN || '*',
@@ -59,5 +59,3 @@ app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-export default app;
