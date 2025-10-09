@@ -188,32 +188,51 @@ Validación en dos niveles:
 1. **Middlewares** (express-validator): tipos, formatos, rangos
 2. **Entidades de dominio**: reglas de negocio
 
+## Variables de Entorno
+
+Crear un archivo `.env` en la raíz del proyecto con las siguientes variables:
+
+```bash
+SERVER_PORT=3000
+CORS_ORIGIN=http://localhost:4200
+NODE_ENV=development
+```
+
+> **Nota sobre Firebase**: La autenticación con Firebase se realiza mediante el archivo `serviceAccountKey.json` en la raíz del proyecto. Este archivo se obtiene de Firebase Console > Configuración del proyecto > Cuentas de servicio > Generar nueva clave privada.
+
 ## Instalación
 
 ```bash
+# Instalar dependencias
 pnpm install
+
+# Copiar archivo de ejemplo de variables de entorno
 cp .env.example .env
+
+# Descargar serviceAccountKey.json de Firebase Console y colocarlo en la raíz del proyecto
 ```
 
 ## Desarrollo
 
 ```bash
-pnpm dev          # Desarrollo con hot reload
+pnpm dev          # Desarrollo con hot reload en http://localhost:3000
 pnpm build        # Build para producción
-pnpm start        # Ejecutar build
-pnpm lint         # Linter
-pnpm lint:fix     # Fix automático
+pnpm start        # Ejecutar build de producción
+pnpm lint         # Ejecutar linter
+pnpm lint:fix     # Fix automático de problemas de linting
+pnpm test         # Ejecutar tests unitarios
 ```
 
-## Firebase Setup
+## Deploy a Firebase Functions
 
 ```bash
-export GOOGLE_APPLICATION_CREDENTIALS="path/to/serviceAccountKey.json"
-```
+# Login a Firebase (solo la primera vez)
+firebase login
 
-## Deploy
+# Seleccionar proyecto
+firebase use <tu-proyecto-id>
 
-```bash
+# Deployar funciones
 pnpm deploy
 ```
 
